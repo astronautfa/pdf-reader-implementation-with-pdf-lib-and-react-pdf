@@ -7,7 +7,7 @@ import { MAXIMAL_NUMBER_OF_PUBLIC_PAGES } from '@/lib/constants';
 import { FileTrigger, Button } from 'react-aria-components';
 import FileUploadIcon from './icons/FileUploadIcon';
 import { twJoin } from 'tailwind-merge';
-import Reactpdfviewer from './Reactpdfviewer';
+import Reactpdfviewer from './Reactpdfviewer2';
 import Collapsable from './Collapsable';
 import { usePDFDocument } from './PDFDocumentProvider';
 import Header from './Header';

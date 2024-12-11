@@ -19,34 +19,34 @@ const DisplayPDF: React.FC = () => {
 	const { setPageNumber, numPages, pageNumber } = usePDFDocument();
 	const { isFullPage, width, fullPageWidth } = useFullPage();
 
-	let { moveProps } = useMove({
-		onMoveStart() {
-			setMove((prev) => ({ ...prev, isMoving: true, deltaX: 0, movingAllowed: true }));
-		},
-		onMove(e) {
-			setMove((prev) => {
-				let deltaX = prev.deltaX;
-				let movingAllowed = prev.movingAllowed;
+	// let { moveProps } = useMove({
+	// 	onMoveStart() {
+	// 		setMove((prev) => ({ ...prev, isMoving: true, deltaX: 0, movingAllowed: true }));
+	// 	},
+	// 	onMove(e) {
+	// 		setMove((prev) => {
+	// 			let deltaX = prev.deltaX;
+	// 			let movingAllowed = prev.movingAllowed;
 
-				let newPage = getNewPage();
-				if (newPage > 0 && numPages && newPage <= numPages) {
-					deltaX += e.deltaX * MOVEMENT_VELOCITY;
-					movingAllowed = true;
-				} else {
-					movingAllowed = false;
-				}
-				return { ...prev, deltaX, isMoving: true, movingAllowed };
-			});
-		},
-		onMoveEnd() {
-			if (Math.abs(move.deltaX) > MOVEMENT_THRESHOLD) {
-				let newPage = getNewPage();
-				newPage = newPage < 1 ? 1 : numPages && newPage > numPages ? numPages : newPage;
-				setPageNumber(newPage);
-			}
-			setMove({ deltaX: 0, isMoving: false, movingAllowed: true });
-		},
-	});
+	// 			let newPage = getNewPage();
+	// 			if (newPage > 0 && numPages && newPage <= numPages) {
+	// 				deltaX += e.deltaX * MOVEMENT_VELOCITY;
+	// 				movingAllowed = true;
+	// 			} else {
+	// 				movingAllowed = false;
+	// 			}
+	// 			return { ...prev, deltaX, isMoving: true, movingAllowed };
+	// 		});
+	// 	},
+	// 	onMoveEnd() {
+	// 		if (Math.abs(move.deltaX) > MOVEMENT_THRESHOLD) {
+	// 			let newPage = getNewPage();
+	// 			newPage = newPage < 1 ? 1 : numPages && newPage > numPages ? numPages : newPage;
+	// 			setPageNumber(newPage);
+	// 		}
+	// 		setMove({ deltaX: 0, isMoving: false, movingAllowed: true });
+	// 	},
+	// });
 	function getNewPage() {
 		const direction = Math.sign(move.deltaX);
 		return pageNumber - direction;
@@ -62,11 +62,11 @@ const DisplayPDF: React.FC = () => {
 						<div
 							className={twJoin(
 								`absolute top-0 w-full h-full transition-transform duration-150 ease-in-out`,
-								pageNumber === index + 1 ? (move.isMoving ? 'cursor-grabbing' : 'cursor-grab') : 'cursor-auto',
+								// pageNumber === index + 1 ? (move.isMoving ? 'cursor-grabbing' : 'cursor-grab') : 'cursor-auto',
 								move.movingAllowed ? '' : 'cursor-not-allowed',
 								pageNumber === index + 1 ? 'pointer-events-auto' : 'pointer-events-none'
 							)}
-							{...moveProps}
+							// {...moveProps}
 							key={index}
 							style={{
 								left: `${index * 100}%`,
@@ -76,8 +76,8 @@ const DisplayPDF: React.FC = () => {
 							<Page
 								pageNumber={index + 1}
 								width={isFullPage ? fullPageWidth : width}
-								renderTextLayer={false}
-								renderAnnotationLayer={false}
+								renderTextLayer={true}
+								renderAnnotationLayer={true}
 							/>
 						</div>
 					))}

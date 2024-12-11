@@ -1,4 +1,4 @@
-export const MAXIMAL_NUMBER_OF_PUBLIC_PAGES = 9999;
+export const MAXIMAL_NUMBER_OF_PUBLIC_PAGES = 99;
 /* For each PDF document, you can specify how many pages are freely accessible to the public (as an appetizer), 
 the rest can then be made accessible via a payment barrier. This value is best stored as a value together with 
 the document at a content provider or in a database. */

@@ -8,7 +8,7 @@ import useResizeObserver from '@react-hook/resize-observer';
 import MySlider from './MySlider';
 import { useFullPage } from './FullPageProvider';
 import { usePDFDocument } from './PDFDocumentProvider';
-import DisplayPDF from './DisplayPDF';
+import DisplayPDF from './DisplayPDF2';
 import { twJoin } from 'tailwind-merge';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.js', import.meta.url).toString();
